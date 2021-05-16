@@ -3,7 +3,8 @@ import { InjectionKey } from "vue"
 import * as api from "../api/index";
 
 interface State {
-    pageData: Object
+    pageData: Object | null,
+    currentPageData: Object | null
 }
 // 定义 injection key
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -12,18 +13,24 @@ export const key: InjectionKey<Store<State>> = Symbol();
 export const store =  createStore<State>({
   state: {
     //页面json
-    pageData: {},
+    pageData: null,
+    currentPageData: null,
   },
   mutations: {
     setPageData(state, data) {
       state.pageData = data;
     },
+    setCurrentPageData(state, data){
+      // 进入页面时先清空动画
+      // ...
+      state.currentPageData = data;
+    }
   },
   actions: {
     async getPageData({ commit }) {
       const data = await api.getData();
-      console.log(data);
       commit("setPageData", data);
+      commit("setCurrentPageData", data.pages[0])
     },
   },
 //   输出日志

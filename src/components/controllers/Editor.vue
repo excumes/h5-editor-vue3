@@ -1,19 +1,103 @@
 <template>
   <div class="editor-container">
-
+    <div class="editor-content">
+    </div>
+    <div class="editor-line-x">
+      <div class="tips">iPhone X</div>
+    </div>
+    <div class="editor-line"></div>
+    <div class="editor">
+      <div class="editor-background" style="opacity: 0">
+        <div class="editor-background-color" :style="backgroundColor"></div>
+        <div class="editor-background-img"></div>
+      </div>
+      <div id="editor" class="editor-inner"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "/@/store/store.ts";
 export default defineComponent({
-
+  setup(){
+    const store = useStore();
+    console.log(store);
+    const backgroundColor = computed(() => {
+      return {
+        backgroundColor: store.state.currentPageData.background.style.backgroundColor,
+      }
+    })
+    return {
+      backgroundColor
+    }
+  }
 })
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 .editor-container {
   flex: 1;
   background: #eee;
+  position: relative;
+  .editor-content{
+    width: 100%;
+    height: 100%;
+  }
 }
+.editor{
+  box-sizing: border-box;
+  width: 322px;
+  height: 486px;
+  border: 1px dashed #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: calc(-322px / 2);
+  margin-top: calc(-486px / 2);
+  .editor-background{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    .editor-background-color,
+    .editor-background-img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-origin: content-box;
+    }
+  }
+}
+.editor-line-x{
+  box-sizing: border-box;
+  position: absolute;
+  width: 322px;
+  height: 620px;
+  left: 50%;
+  top: 50%;
+  margin-left: -161px;
+  margin-top: -310px;
+  border: 1px dashed #999;
+  .tips{
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    color: #999;
+  }
+}
+.editor-line{
+  position: absolute;
+  width: 322px;
+  height: 520px;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  margin-left: -161px;
+  margin-top: -260px;
+  border: 1px dashed #999;
+}
+
 </style>

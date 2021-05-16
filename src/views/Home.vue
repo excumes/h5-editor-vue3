@@ -6,7 +6,7 @@
     </header>
     <main>
       <Pages />
-      <Editor />
+      <Editor v-if="curPageData"/>
       <Tools />
       <PageSetting />
     </main>
@@ -33,6 +33,12 @@ export default defineComponent({
     onMounted(() => {
       store.dispatch('getPageData');
     })
+    return {
+      curPageData : computed(() => {
+        // console.log(store.state.currentPageData)
+        return store.state.currentPageData
+      })
+    }
   }
 });
 // this.$store.dispatch('page/getData');
