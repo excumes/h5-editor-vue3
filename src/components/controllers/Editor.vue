@@ -7,9 +7,9 @@
     </div>
     <div class="editor-line"></div>
     <div class="editor">
-      <div class="editor-background" style="opacity: 0">
-        <div class="editor-background-color" :style="backgroundColor"></div>
-        <div class="editor-background-img"></div>
+      <div class="editor-background" style="opacity: 1">
+        <div class="editor-background-color" :style="{ backgroundColor: bgColor,animation: curPagePlayAmRef }"></div>
+        <div class="editor-background-img" :style="{ backgroundImage: `url(${bgImg})`, animation: curPagePlayAmRef}"></div>
       </div>
       <div id="editor" class="editor-inner"></div>
     </div>
@@ -17,19 +17,16 @@
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useStore } from "/@/store/store.ts";
 export default defineComponent({
   setup(){
     const store = useStore();
-    console.log(store);
-    const backgroundColor = computed(() => {
-      return {
-        backgroundColor: store.state.currentPageData.background.style.backgroundColor,
-      }
-    })
+    const curPagePlayAmRef = ref('none');
     return {
-      backgroundColor
+      bgColor: computed(() => store.state.currentPageData.background.style.backgroundColor),
+      bgImg: computed(() => store.state.currentPageData.background.style.backgroundImage),
+      curPagePlayAmRef,
     }
   }
 })
