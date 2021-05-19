@@ -3,8 +3,13 @@ import { InjectionKey } from "vue"
 import * as api from "../api/index";
 
 interface State {
-    pageData: Object | null,
-    currentPageData: Object | null
+    pageData: any,
+    currentPageData: any,
+    addEleDialog: {
+      show: Boolean,
+      type: Number
+    },
+    backgroundList: String[]
 }
 // 定义 injection key
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -15,6 +20,11 @@ export const store =  createStore<State>({
     //页面json
     pageData: null,
     currentPageData: null,
+    addEleDialog: {
+      show: false,
+      type: 1
+    },
+    backgroundList: [],
   },
   mutations: {
     setPageData(state, data) {
@@ -24,6 +34,12 @@ export const store =  createStore<State>({
       // 进入页面时先清空动画
       // ...
       state.currentPageData = data;
+    },
+    setCurPageDataBackground(state, data){
+      if(data.type == 'bgImage'){
+        state.currentPageData.background.style.backgroundImage = data.image
+        console.log(data);
+      }
     }
   },
   actions: {

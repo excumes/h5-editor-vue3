@@ -14,19 +14,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed } from "vue";
+import { defineComponent, onMounted, computed, ref} from "vue";
 import { useStore } from "/@/store/store.ts"
 import Pages from "../components/controllers/Pages.vue";
 import Editor from "../components/controllers/Editor.vue";
 import PageSetting from "../components/controllers/PageSetting.vue";
 import Tools from "../components/controllers/Tools.vue";
+
 export default defineComponent({
   name: "app",
   components: {
+    Tools,
     Pages,
     Editor,
     PageSetting,
-    Tools,
   },
   setup(){
     const store = useStore();
@@ -34,18 +35,10 @@ export default defineComponent({
       store.dispatch('getPageData');
     })
     return {
-      curPageData : computed(() => {
-        // console.log(store.state.currentPageData)
-        return store.state.currentPageData
-      })
+      curPageData : computed(() => store.state.currentPageData),
     }
   }
 });
-// this.$store.dispatch('page/getData');
-// 		setInterval(() => {
-// 			this.$store.dispatch('page/setData');
-// 		}, 60 * 1000);
-// 		this.initKeyService();
 </script>
 
 <style scoped lang="less">
@@ -61,6 +54,7 @@ export default defineComponent({
     width: 100%;
     background: @gray;
     display: flex;
+    z-index:999;
     .logo {
       font-size: 20px;
       width: 170px;
