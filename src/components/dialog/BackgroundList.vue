@@ -31,7 +31,7 @@ export default defineComponent({
   setup(props, ctx){
     const store =  useStore();
     const addBackground = (img) => {
-      store.commit('setCurPageDataBackground', { image: img.src, type: 'bgImage'});
+      store.commit('page/setCurPageDataBackground', { image: img.src, type: 'bgImage'});
       ctx.emit('closeDialog');
     }
     const backgroundList = ref([{src: ''}]);

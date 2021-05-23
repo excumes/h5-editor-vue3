@@ -5,10 +5,10 @@
       </div>
     </header>
     <main>
-      <Pages />
+      <Pages v-if="curPageData"/>
       <Editor v-if="curPageData"/>
       <Tools />
-      <PageSetting />
+      <PageSetting v-if="curPageData"/>
     </main>
   </div>
 </template>
@@ -32,10 +32,10 @@ export default defineComponent({
   setup(){
     const store = useStore();
     onMounted(() => {
-      store.dispatch('getPageData');
+      store.dispatch('page/getPageData');
     })
     return {
-      curPageData : computed(() => store.state.currentPageData),
+      curPageData : computed(() => store.state.page.currentPageData),
     }
   }
 });
@@ -75,7 +75,5 @@ export default defineComponent({
     display: flex;
   }
 }
-
-
 
 </style>

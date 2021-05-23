@@ -17,7 +17,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     return {
-      pages: computed(() => store.state.pageData?.pages),
+      pages: computed(() => store.state.page.pageData?.pages),
     };
   },
 });

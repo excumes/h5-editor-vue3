@@ -6,7 +6,7 @@
       <div class="tips">iPhone X</div>
     </div>
     <div class="editor-line"></div>
-    <div class="editor">
+    <div class="editor" :style="{filter: pageFilter}">
       <div class="editor-background" style="opacity: 1">
         <div class="editor-background-color" :style="{ backgroundColor: bgColor,animation: curPagePlayAmRef }"></div>
         <div class="editor-background-img" :style="{ backgroundImage: `url(${bgImg})`, animation: curPagePlayAmRef}"></div>
@@ -24,8 +24,9 @@ export default defineComponent({
     const store = useStore();
     const curPagePlayAmRef = ref('none');
     return {
-      bgColor: computed(() => store.state.currentPageData.background.style.backgroundColor),
-      bgImg: computed(() => store.state.currentPageData.background.style.backgroundImage),
+      bgColor: computed(() => store.state.page.currentPageData.background.style.backgroundColor),
+      bgImg: computed(() => store.state.page.currentPageData.background.style.backgroundImage),
+      pageFilter: computed(() => store.state.page.currentPageData.background.style.filter),
       curPagePlayAmRef,
     }
   }
