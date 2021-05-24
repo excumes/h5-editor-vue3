@@ -241,5 +241,8 @@ export default defineComponent({
   .el-input-number--mini .el-input-number__decrease, .el-input-number--mini .el-input-number__increase{
     display: none;
   }
+  .el-form-item{
+    margin-bottom: 10px;
+  }
 }
 </style>

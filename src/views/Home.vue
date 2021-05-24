@@ -7,7 +7,7 @@
     <main>
       <Pages v-if="curPageData"/>
       <Editor v-if="curPageData"/>
-      <Tools />
+      <Tools v-if="curPageData"/>
       <PageSetting v-if="curPageData"/>
     </main>
   </div>
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, computed, ref} from "vue";
-import { useStore } from "/@/store/store.ts"
+import { useStore } from "/@/store/store"
 import Pages from "../components/controllers/Pages.vue";
 import Editor from "../components/controllers/Editor.vue";
 import PageSetting from "../components/controllers/PageSetting.vue";

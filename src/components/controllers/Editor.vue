@@ -11,7 +11,13 @@
         <div class="editor-background-color" :style="{ backgroundColor: bgColor,animation: curPagePlayAmRef }"></div>
         <div class="editor-background-img" :style="{ backgroundImage: `url(${bgImg})`, animation: curPagePlayAmRef}"></div>
       </div>
-      <div id="editor" class="editor-inner"></div>
+      <div id="editor" class="editor-inner">
+        <SmartEl v-for="(data, index) in elements" 
+          :key="data.id"
+          :data="data"
+          :zIndex="index"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -19,7 +25,11 @@
 <script>
 import { defineComponent, computed, ref } from "vue";
 import { useStore } from "/@/store/store.ts";
+import SmartEl from '/@/components/elements/SmartEl.vue';
 export default defineComponent({
+  components:{
+    SmartEl
+  },
   setup(){
     const store = useStore();
     const curPagePlayAmRef = ref('none');
@@ -28,6 +38,7 @@ export default defineComponent({
       bgImg: computed(() => store.state.page.currentPageData.background.style.backgroundImage),
       pageFilter: computed(() => store.state.page.currentPageData.background.style.filter),
       curPagePlayAmRef,
+      elements: computed(() => store.state.page.currentPageData.elements),
     }
   }
 })
@@ -56,7 +67,7 @@ export default defineComponent({
   .editor-background{
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     overflow: hidden;
     .editor-background-color,
     .editor-background-img{
@@ -68,6 +79,10 @@ export default defineComponent({
       background-origin: content-box;
     }
   }
+}
+#editor{
+  width: 100%;
+  height: 100%;
 }
 .editor-line-x{
   box-sizing: border-box;
