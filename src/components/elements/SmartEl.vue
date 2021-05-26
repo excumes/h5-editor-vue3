@@ -12,7 +12,8 @@
       transform: `rotateZ(${data.style.roteDeg}deg)`,
     }"
   >
-    <div class="elements-box" style="position: relative; width: 100%; height: 100%;"
+    <div class="element-box" style="position: relative; width: 100%; height: 100%;"
+        :class="{'selected': eleSelected}"
     >
       <div class="ele-cont"
         :style="{
@@ -29,12 +30,35 @@
       >
         <ImgEl v-if="data.type === 1" :src="data.src"/>
       </div>
+      <!-- 旋转圆点 -->
+      <div class="rotate-line bar"></div>
+      <div class="circle rotate bar"></div>
+      <!-- 线条 -->
+      <div class="top bar">
+        <div class="circle"></div>
+      </div>
+      <div class="bottom bar">
+        <div class="circle"></div>
+      </div> 
+      <div class="right bar">
+        <div class="circle"></div>
+      </div>
+      <div class="left bar">
+        <div class="circle"></div>
+      </div>
+      <!-- 顶角圆点 -->
+      <div class="circle top-left bar"></div>
+      <div class="circle top-right bar"></div>
+      <div class="circle bottom-left bar"></div>
+      <div class="circle bottom-right bar"></div>
+      
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, ref} from 'vue'
+<script lang="ts">
+import { defineComponent, ref, computed} from 'vue'
+import { useStore } from "/@/store/store.ts";
 import ImgEl from "./ImgEl";
 export default defineComponent({
   name: "element",
@@ -46,13 +70,133 @@ export default defineComponent({
     zIndex: Number
   },
   setup(props, ctx){
-
+    const store = useStore();
+    const eleSelected = computed(() => {
+      const ids: String[] = store.state.element.selectedElIds;
+      if(ids.includes(props.data.id)){
+        return true
+      }
+      return false
+    })
+    
+    return {
+      eleSelected
+    }
   }
 })
 </script>
-
-<style scope lang="less">
+<style  scoped lang="less">
+.barstyle{
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #29AAAF;
+  touch-action: pan-x pan-y;
+  user-select: none; 
+  -webkit-user-drag: none; 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 .smart-ele{
   position: absolute;
+  &:hover{
+    outline: 1px dashed #999;
+  }
 }
+.element-box{
+  font-size: 12px;
+  .circle{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #29AAAF;
+    background: #fff;
+    border-radius: 50%;
+    &.top-right{
+      right: -6px;
+      top: -6px;
+      cursor: ne-resize;
+    }
+    &.top-left{
+      left: -6px;
+      top: -6px;
+      cursor: nw-resize;
+    }
+    &.bottom-right{
+      right: -6px;
+      bottom: -6px;
+      cursor: se-resize;
+    }
+    &.bottom-left{
+      left: -6px;
+      bottom: -6px;
+      cursor: sw-resize;
+    }
+    &.rotate{
+      top: -30px;
+      left: calc(50% - 6px);
+      cursor: url(/@/assets/images/rotate.png) 10 10 ,default;
+    }
+  }
+  .top{
+    left: 0;
+    top: 0;
+    cursor: n-resize;
+    .barstyle();
+    .circle{
+      left: calc(50% - 6px);
+      top: -6px;
+    }
+  }
+  .bottom{
+    left: 0;
+    bottom: 0;
+    cursor: s-resize;
+    .barstyle();
+    .circle{
+      left: calc(50% - 6px);
+      top: -6px;
+    }
+  }
+  .right{
+    .barstyle();
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    cursor: e-resize;
+    .circle{
+      left: -6px;
+      top: calc(50% - 6px);
+    }
+  }
+  .left{
+    .barstyle();
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    cursor: w-resize;
+    .circle{
+      left: -6px;
+      top: calc(50% - 6px);
+    }
+  }
+  .bar{
+    display: none;
+  }
+  &:hover{
+    .bar{
+      display: block;
+    }
+  }
+  .rotate-line{
+    position: absolute;
+    height: 20px;
+    width: 1px;
+    background: #29AAAF;
+    top: -20px;
+    left: 50%;
+  }
+}
+
 </style>

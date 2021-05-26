@@ -71,6 +71,12 @@ export const store = createStore<State>({
         },
       },
     },
+    element: {
+      namespaced: true,
+      state:{
+        selectedElIds: [],
+      }
+    }
   },
   //   输出日志
   //   plugins: [createLogger()],
