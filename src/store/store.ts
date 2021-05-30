@@ -75,6 +75,15 @@ export const store = createStore<State>({
       namespaced: true,
       state:{
         selectedElIds: [],
+        selectedElement: null,
+      },
+      mutations:{
+        setSelectedIds(state, data){
+          state.selectedElIds = data;
+        },
+        setSelectElement(state, data){
+          state.selectedElement = data;
+        }
       }
     }
   },

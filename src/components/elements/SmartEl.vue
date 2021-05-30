@@ -35,31 +35,31 @@
       <div class="circle rotate bar"></div>
       <!-- 线条 -->
       <div class="top bar">
-        <div class="circle"></div>
+        <div class="circle N"></div>
       </div>
       <div class="bottom bar">
-        <div class="circle"></div>
+        <div class="circle S"></div>
       </div> 
       <div class="right bar">
-        <div class="circle"></div>
+        <div class="circle E"></div>
       </div>
       <div class="left bar">
-        <div class="circle"></div>
+        <div class="circle W"></div>
       </div>
       <!-- 顶角圆点 -->
-      <div class="circle top-left bar"></div>
-      <div class="circle top-right bar"></div>
-      <div class="circle bottom-left bar"></div>
-      <div class="circle bottom-right bar"></div>
+      <div class="circle left-top bar"></div>
+      <div class="circle right-top bar"></div>
+      <div class="circle left-bottom bar"></div>
+      <div class="circle right-bottom bar"></div>
       
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref, computed} from 'vue'
 import { useStore } from "/@/store/store.ts";
-import ImgEl from "./ImgEl";
+import ImgEl from "./ImgEl.vue";
 export default defineComponent({
   name: "element",
   components: {
@@ -72,8 +72,8 @@ export default defineComponent({
   setup(props, ctx){
     const store = useStore();
     const eleSelected = computed(() => {
-      const ids: String[] = store.state.element.selectedElIds;
-      if(ids.includes(props.data.id)){
+      const ids = store.state.element.selectedElIds;
+      if(ids.includes(props.data?.id)){
         return true
       }
       return false
@@ -111,22 +111,22 @@ export default defineComponent({
     border: 1px solid #29AAAF;
     background: #fff;
     border-radius: 50%;
-    &.top-right{
+    &.right-top{
       right: -6px;
       top: -6px;
       cursor: ne-resize;
     }
-    &.top-left{
+    &.left-top{
       left: -6px;
       top: -6px;
       cursor: nw-resize;
     }
-    &.bottom-right{
+    &.right-bottom{
       right: -6px;
       bottom: -6px;
       cursor: se-resize;
     }
-    &.bottom-left{
+    &.left-bottom{
       left: -6px;
       bottom: -6px;
       cursor: sw-resize;
@@ -184,7 +184,7 @@ export default defineComponent({
   .bar{
     display: none;
   }
-  &:hover{
+  &.selected{
     .bar{
       display: block;
     }

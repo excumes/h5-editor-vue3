@@ -9,6 +9,7 @@
       <Editor v-if="curPageData"/>
       <Tools v-if="curPageData"/>
       <PageSetting v-if="curPageData"/>
+      <!-- <EleSetting/> -->
     </main>
   </div>
 </template>
@@ -20,6 +21,7 @@ import Pages from "../components/controllers/Pages.vue";
 import Editor from "../components/controllers/Editor.vue";
 import PageSetting from "../components/controllers/PageSetting.vue";
 import Tools from "../components/controllers/Tools.vue";
+import EleSetting from "../components/elements/EleSetting.vue";
 
 export default defineComponent({
   name: "app",
@@ -28,6 +30,7 @@ export default defineComponent({
     Pages,
     Editor,
     PageSetting,
+    EleSetting
   },
   setup(){
     const store = useStore();
