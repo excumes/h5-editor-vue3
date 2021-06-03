@@ -1,12 +1,16 @@
 <template>
-    <router-view/>
+    <router-view></router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useStore } from "./store/index"
 export default defineComponent({
   name: 'App',
   components: {
+  },
+  setup(){
+    const a = useStore();
   }
 })
 </script>

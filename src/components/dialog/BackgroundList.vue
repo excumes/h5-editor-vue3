@@ -25,8 +25,8 @@
 </style>
 <script>
 import {defineComponent ,onMounted, ref} from 'vue';
-import { useStore } from "/@/store/store.ts";
-import * as api from "/@/api/index.ts";
+import { useStore } from "../../store/index";
+import * as api from "@/api/index.ts";
 export default defineComponent({
   setup(props, ctx){
     const store =  useStore();

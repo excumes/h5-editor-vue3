@@ -65,13 +65,13 @@
 </template>
 
 <script>
-import { useStore } from "/@/store/store.ts";
+import { useStore } from "../../store";
 import { defineComponent, ref, computed } from "vue";
 import AddEleDialog from "../dialog/AddEleDialog.vue";
 import BackgroundList from "../dialog/BackgroundList";
 import ColorPicker from "../common/ColorPicker.vue";
-import { pageAnimations } from "/@/utils/animationsData";
-import { filters } from "/@/utils/filtersData";
+import { pageAnimations } from "@/utils/animationsData";
+import { filters } from "@/utils/filtersData";
 export default defineComponent({
   components: {
     AddEleDialog,
@@ -192,7 +192,7 @@ export default defineComponent({
     .img{
       height: 60px;
       width: 100%;
-      background: url(/@/assets/images/filter.png) no-repeat center;
+      background: url(@/assets/images/filter.png) no-repeat center;
     }
     .name{
       font-size: 14px;

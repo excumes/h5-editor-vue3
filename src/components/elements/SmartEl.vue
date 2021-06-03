@@ -51,14 +51,13 @@
       <div class="circle right-top bar"></div>
       <div class="circle left-bottom bar"></div>
       <div class="circle right-bottom bar"></div>
-      
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, computed} from 'vue'
-import { useStore } from "/@/store/store.ts";
+import { useStore } from "../../store";
 import ImgEl from "./ImgEl.vue";
 export default defineComponent({
   name: "element",
@@ -134,7 +133,7 @@ export default defineComponent({
     &.rotate{
       top: -30px;
       left: calc(50% - 6px);
-      cursor: url(/@/assets/images/rotate.png) 10 10 ,default;
+      cursor: url(@/assets/images/rotate.png) 10 10 ,default;
     }
   }
   .top{

@@ -26,10 +26,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed, ref } from "vue";
-import { useStore } from "/@/store/store.ts";
-import SmartEl from '/@/components/elements/SmartEl.vue';
+import SmartEl from '@/components/elements/SmartEl.vue';
+import { useStore } from "../../store"
 export default defineComponent({
   components:{
     SmartEl

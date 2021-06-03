@@ -1,6 +1,5 @@
 <template>
   <div class="color-picker">
-    <!-- <div class="color-picker-inner" :class="{small:pickerModel=='small'}"> -->
     <el-color-picker
       show-alpha
       v-model="colorRef"
@@ -35,7 +34,7 @@
     border: 1px solid #ccc;
     cursor: pointer;
     &.transparent {
-      background-image: url(/@/assets/images/bgblank.png);
+      background-image: url(@/assets/images/bgblank.png);
     }
   }
 }
@@ -62,7 +61,7 @@
 </style>
 <script>
 import { defineComponent, ref } from "vue";
-import { useStore } from "/@/store/store.ts";
+import { useStore } from "../../store";
 export default defineComponent({
   setup(props, ctx) {
     const store = useStore();

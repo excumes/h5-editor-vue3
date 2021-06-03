@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import { useStore } from "/@/store/store.ts";
+import { useStore } from "../../store/index";
 export default defineComponent({
   setup() {
     const store = useStore();

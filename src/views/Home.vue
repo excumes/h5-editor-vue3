@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, computed, ref} from "vue";
-import { useStore } from "/@/store/store"
+import { useStore } from "../store/index"
 import Pages from "../components/controllers/Pages.vue";
 import Editor from "../components/controllers/Editor.vue";
 import PageSetting from "../components/controllers/PageSetting.vue";
