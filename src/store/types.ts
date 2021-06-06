@@ -37,7 +37,7 @@ interface BackgroundAnimation {
   animationDuration: Number
 }
 
-interface Element{
+export interface Element{
   id: String
   style: ElementStyle | TextStyle
   animations: ElementAnimation

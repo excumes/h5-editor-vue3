@@ -1,9 +1,9 @@
 import { Module } from "vuex";
 import { RootState } from "../index";
-
+import { Element } from "../types"
 export interface ElementState {
   selectedElIds: String[]
-  selectedElement: any
+  selectedElement: null | Element
 }
 export const elementModule: Module<ElementState, RootState> = {
   namespaced: true,

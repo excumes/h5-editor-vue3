@@ -8,7 +8,6 @@ export interface RootState {
 // 定义 injection key
 export const key: InjectionKey<Store<RootState>> = Symbol('store-key');
 
-
 export const store = createStore<RootState>({
   modules: {
     page: pageModule,

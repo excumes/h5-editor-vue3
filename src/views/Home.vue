@@ -8,8 +8,8 @@
       <Pages v-if="curPageData"/>
       <Editor v-if="curPageData"/>
       <Tools v-if="curPageData"/>
-      <PageSetting v-if="curPageData"/>
-      <!-- <EleSetting/> -->
+      <!-- <PageSetting v-if="curPageData"/> -->
+      <EleSetting/>
     </main>
   </div>
 </template>
