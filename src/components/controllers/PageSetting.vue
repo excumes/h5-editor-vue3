@@ -134,7 +134,7 @@ export default defineComponent({
 
 <style scoped lang="less">
 .page-setting {
-  width: 260px;
+  width: 240px;
   overflow-y: auto;
   padding: 0 10px;
 }

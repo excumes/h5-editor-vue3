@@ -1,9 +1,9 @@
 import { Module } from "vuex";
 import { RootState } from "../index";
-import { Element } from "../types"
+import { Element } from "../types";
 export interface ElementState {
-  selectedElIds: String[]
-  selectedElement: null | Element
+  selectedElIds: String[];
+  selectedElement: null | Element;
 }
 export const elementModule: Module<ElementState, RootState> = {
   namespaced: true,
@@ -17,6 +17,22 @@ export const elementModule: Module<ElementState, RootState> = {
     },
     setSelectElement(state, data) {
       state.selectedElement = data;
+    },
+    setCurDataColor(state, { type, colorVal }) {
+      if (state.selectedElement) {
+        if (type == "backgroundColor") {
+          state.selectedElement.style.backgroundColor = colorVal;
+        }
+        if (type == "borderColor") {
+          state.selectedElement.style.borderColor = colorVal;
+        }
+        if (type == "boxShadowColor") {
+          state.selectedElement.style.boxShadowColor = colorVal;
+        }
+        if (type == "fontcolor") {
+          state.selectedElement.style.color = colorVal;
+        }
+      }
     },
   },
 };

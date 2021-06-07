@@ -39,7 +39,7 @@ interface BackgroundAnimation {
 
 export interface Element{
   id: String
-  style: ElementStyle | TextStyle
+  style: TextStyle
   animations: ElementAnimation
   currentPlayAm: String
   type: Number

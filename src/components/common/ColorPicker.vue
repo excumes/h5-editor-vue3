@@ -26,7 +26,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 0 10px;
+  padding: 0 5px;
   .color-item {
     width: 12px;
     height: 12px;
@@ -63,11 +63,18 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "../../store";
 export default defineComponent({
-  setup(props, ctx) {
+  props:{
+    color: {
+      type: String,
+      default: "rgba(0,0,0,0)"
+    }
+  },
+  emits: ['change'],
+  setup(props, { emit }) {
     const store = useStore();
-    const colorRef = ref("rgba(255,255,255,1)");
+    const colorRef = ref(props.color);
     const colorChange = (color) => {
-      ctx.emit("change", color);
+      emit("change", color);
     };
     // 预设颜色
     const presetColors = [

@@ -13,6 +13,16 @@
                         <el-button size="medium" type="primary" plain icon="el-icon-scissors">裁剪图片</el-button>
                     </div>
                 </div>
+                <el-form label-width="70px" @submit.prevent>
+                  <el-form-item label="背景颜色">
+                    <ColorPicker :colorData="curElementBg" type="backgroundColor" @change="changeBg"/>
+                  </el-form-item>
+                        <!-- <color-picker 
+                            :colorData="$store.state.element.currentElData.style.backgroundColor" 
+                            @get-color="getColor" 
+                            type="backgroundColor"
+                        /> -->
+                </el-form>
             </el-collapse-item>
       </el-collapse>
   </div>
@@ -21,7 +31,11 @@
 <script lang="ts">
 import { ref, defineComponent, computed } from "vue"
 import { useStore } from "../../store";
+import ColorPicker from "@/components/common/ColorPicker.vue"
 export default defineComponent({
+  components:{
+    ColorPicker
+  },
   setup(){
     const store = useStore();
     const collapseActiveName = ref("basicInfo");
@@ -29,11 +43,22 @@ export default defineComponent({
     const changeImage = () => {
       
     }
+    const changeBg = (colorVal) => {
+      console.log(colorVal);
+      store.commit('element/setCurDataColor', { type: 'backgroundColor', colorVal })
+    }
     return{
       collapseActiveName,
       elementType: computed(() => store.state.element.selectedElement?.type),
       elementImg: computed(() => store.state.element.selectedElement?.src),
-      changeImage
+      curElementBg: computed(() => {
+        if(store.state.element.selectedElement){
+          return store.state.element.selectedElement
+        }
+        return "rgba(0,0,0,0)"
+      }),
+      changeImage,
+      changeBg
     }
   }
 })
@@ -44,10 +69,11 @@ export default defineComponent({
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+  margin-bottom: 10px;
 	.img-show{
 		flex: 3;
 		height: 100px;
-		background: url('../../../assets/img/bgblank.png');
+		background: url(@/assets/images/bgblank.png);
 		border: 1px solid #E6E6E6;
 		img{
 			object-fit:contain;

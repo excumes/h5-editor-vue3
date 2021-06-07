@@ -8,8 +8,8 @@
       <Pages v-if="curPageData"/>
       <Editor v-if="curPageData"/>
       <Tools v-if="curPageData"/>
-      <!-- <PageSetting v-if="curPageData"/> -->
-      <EleSetting/>
+      <EleSetting v-if="selectedElIds.length != 0"/>
+      <PageSetting v-if="curPageData && selectedElIds.length === 0" />
     </main>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default defineComponent({
     })
     return {
       curPageData : computed(() => store.state.page.currentPageData),
+      selectedElIds: computed(() => store.state.element.selectedElIds)
     }
   }
 });
