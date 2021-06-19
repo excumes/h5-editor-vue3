@@ -18,8 +18,25 @@
   const tabsActiveName = ref("style");
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .ele-setting {
   width: 260px;
+  .el-slider__button{
+		width: 12px;
+		height: 12px;
+	}
+	.el-slider__input{
+		width: 50px;
+	}
+  .el-input-number--mini .el-input__inner{
+		padding: 0;
+	}
+	.el-slider__runway.show-input{
+		margin-right: 65px;
+		margin-left: 5px;
+	}
+  .el-input-number--mini .el-input-number__decrease, .el-input-number--mini .el-input-number__increase{
+		display: none;
+	}
 }
 </style>

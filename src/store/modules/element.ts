@@ -18,6 +18,11 @@ export const elementModule: Module<ElementState, RootState> = {
     setSelectElement(state, data) {
       state.selectedElement = data;
     },
+    setOpacity(state, val){
+      if(state.selectedElement){
+        state.selectedElement.style.opacity = val;
+      }
+    },
     setCurDataColor(state, { type, colorVal }) {
       if (state.selectedElement) {
         if (type == "backgroundColor") {
